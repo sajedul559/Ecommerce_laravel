@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\backend\CategoriesController;
+
 
 
 /*
@@ -59,6 +61,14 @@ Route::get('/delete-brand/{id}',[App\Http\Controllers\backend\BrandController::c
 Route::get('/edit-brand/{id}',[App\Http\Controllers\backend\BrandController::class,'editBrand'])->name('editBrand');
 Route::post('/update-brand/{id}',[App\Http\Controllers\backend\BrandController::class,'updateBrand'])->name('updateBrand');
 
+//Brand Controller
+Route::get('/category-all',[App\Http\Controllers\backend\CategoriesController::class,'allCategory'])->name('allCategory');
+Route::get('/category-form',[App\Http\Controllers\backend\CategoriesController::class,'addCategoryForm'])->name('addCategoryForm');
+
+Route::post('/add-category',[App\Http\Controllers\backend\CategoriesController::class,'storeCategory'])->name('storeCategory');
+Route::get('/delete-category/{id}',[App\Http\Controllers\backend\CategoriesController::class,'deleteCategory'])->name('deleteCategory');
+Route::get('/edit-category/{id}',[App\Http\Controllers\backend\CategoriesController::class,'editCategory'])->name('editCategory');
+Route::post('/update-category/{id}',[App\Http\Controllers\backend\CategoriesController::class,'updateCategory'])->name('updateCategory');
 
 
 

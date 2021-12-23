@@ -19,11 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->text('summary')->nullable();
             $table->string('photo')->nullable();
-            $table->boolean('is_parent')->default(1);
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->unsignedBigInteger('added_by')->nullable();
+            $table->integer('parent_id')->nullable();
             $table->enum('status',['active','inactive'])->default('inactive');
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

@@ -7,3 +7,8 @@
 	<script src="{{asset('frontend/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{asset('frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{asset('frontend/js/functions.js') }}"></script>
+	<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+
+
+
+	@stack('scripts')

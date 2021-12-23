@@ -35,7 +35,7 @@
                     <td>
                         <a href="{{route('editBrand',$brand->id)}}"  class="btn btn-primary btn-sm mr-1 edit"><span class="fa fa-edit"></span></a>
                                           
-                        <a href="" onclick="brandDelete({{$brand->id}})"  class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                        <a href="{{route('deleteBrand',$brand->id)}}"   class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
                     </td>
 
                   </tr>
