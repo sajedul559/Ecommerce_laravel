@@ -18,7 +18,7 @@
 
             <div class="form-group">
               <label for="exampleInputPassword1">Description</label>
-              <textarea name="summary" rows="8" cols="80" class="form-control">{{$category->summary}}</textarea>
+              <textarea name="summary" id="summary" rows="8" cols="80" class="form-control">{{$category->summary}}</textarea>
             </div>
             
 
@@ -58,7 +58,15 @@
     </div>
 @endsection
 
-<script>
 
-</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+function test()
+{
+  alert('tesing');
+}
+  $(document).ready(function() {
+    $('#summary').summernote();
+  });
+  </script>

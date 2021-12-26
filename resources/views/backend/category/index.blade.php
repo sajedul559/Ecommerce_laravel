@@ -21,16 +21,19 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category )
+                @foreach ($category  as $category )
+                @php
+                  $parent_cat = DB::table('categories')->select('title')->where('id',$category->parent_id)->get();
+                @endphp
                 <tr class="text-center">
                     <td>{{$category->id}}</td>
                     <td>{{$category->title}}</td>
                     <td>
                         @if ($category->parent_id == NULL)
-                        Main Category
-                      @else
-                        {{ $category->parent->title }}
-                      @endif
+                          Main Category
+                        @else
+                        {{ $category->parent_info->title }}
+                        @endif
                     </td>
 
                     <td>

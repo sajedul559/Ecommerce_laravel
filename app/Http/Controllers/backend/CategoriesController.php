@@ -13,22 +13,23 @@ class CategoriesController extends Controller
 {
     public function allCategory()
     {
-        $parent_cat = Category::where('id',2)->first();
-        // dd($parent_cat->parent->title);
-        $categories = Category::all();
-        return view('backend.category.index',compact('categories'));
+        $category =Category::getAllCategory();
+      //  return $category;
+      
+        return view('backend.category.index',compact('category'));
     }
     public function addCategoryForm()
     {
         $parent_categories = Category::where('parent_id',NULL)->orderBy('title','ASC')->get();
+        $message = "No parent category";
         
-        return view('backend.category.create',compact('parent_categories'));
+        return view('backend.category.create',compact('parent_categories','message'));
     }
     public function storeCategory(Request $request)
     {
        
         $request->validate([
-            'title'=>'required',
+            'title'=>'required|unique:categories,title',
             'image'=>'required',
 
         ]);
@@ -111,5 +112,23 @@ class CategoriesController extends Controller
         $category->save();
         return redirect()->route('allCategory');
     }
+
+    public function test()
+    {
+        return view('test');
+    }
       
+    public function getChildByParent(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $child_cat = Category::getChildByParentID($request->id);
+
+        if(count($child_cat) <=0){
+            return response()->json(['status'=>false,'msg'=>'','data'=>null]);
+        }
+        else{
+            return response()->json(['status'=>true,'msg'=>'','data'=>$child_cat]);
+        }
+
+    }
 }

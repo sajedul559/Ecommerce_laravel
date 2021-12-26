@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\backend\CategoriesController;
+use App\Http\Controllers\backend\ProductController;
+
 
 
 
@@ -71,7 +73,19 @@ Route::get('/edit-category/{id}',[App\Http\Controllers\backend\CategoriesControl
 Route::post('/update-category/{id}',[App\Http\Controllers\backend\CategoriesController::class,'updateCategory'])->name('updateCategory');
 
 
+//Product Routes
+Route::get('/Product-all',[App\Http\Controllers\backend\ProductController::class,'allproduct'])->name('allProduct');
+Route::get('/product-add',[App\Http\Controllers\backend\ProductController::class,'addproductForm'])->name('addProduct');
 
+Route::post('/add-product',[App\Http\Controllers\backend\ProductController::class,'storeproduct'])->name('storeproduct');
+Route::delete('/delete-product/{id}',[App\Http\Controllers\backend\ProductController::class,'deleteproduct'])->name('deleteproduct');
+Route::get('/edit-product/{id}',[App\Http\Controllers\backend\ProductController::class,'editproduct'])->name('editproduct');
+Route::post('/update-product/{id}',[App\Http\Controllers\backend\ProductController::class,'updateproduct'])->name('updateproduct');
+
+//Ajax for sub category
+Route::post('/category/{id}/child',[App\Http\Controllers\backend\CategoriesController::class,'getChildByParent']);
+
+Route::get('/test',[App\Http\Controllers\backend\CategoriesController::class,'test'])->name('test');
 
 
 

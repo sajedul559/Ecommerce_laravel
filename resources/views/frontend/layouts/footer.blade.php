@@ -251,3 +251,10 @@
         </div>
     </div>
 </footer>
+
+
+
+
+
+
+@stack('scripts')
