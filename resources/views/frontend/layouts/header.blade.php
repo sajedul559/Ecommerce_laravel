@@ -115,11 +115,16 @@
                                 </div>
                             </a>
                         </div>
+                        @php
+                             $user_carts = DB::table('carts')->where('user_id',Auth::id())->get()->count();
+                           
+                            
+                        @endphp
                         <div class="wrap-icon-section minicart">
-                            <a href="#" class="link-direction">
+                            <a href="{{route('shopping-cart')}}" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">4 items</span>
+                                    <span class="index">{{$user_carts}}</span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>
@@ -162,7 +167,7 @@
                                 <a href="{{route('shop')}}" class="link-term mercado-item-title">Shop</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{route('cart')}}" class="link-term mercado-item-title">Cart</a>
+                                <a href="{{route('shopping-cart')}}" class="link-term mercado-item-title">Cart</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{route('checkout')}}" class="link-term mercado-item-title">Checkout</a>

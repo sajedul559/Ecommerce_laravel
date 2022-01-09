@@ -16,12 +16,13 @@
             <div class="wrap-iten-in-cart">
                 <h3 class="box-title">Products Name</h3>
                 <ul class="products-cart">
+                    @forelse ($user_carts as $cart )
                     <li class="pr-cart-item">
                         <div class="product-image">
                             <figure><img src="frontend/images/products/digital_18.jpg" alt=""></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
+                            <a class="link-to-product" href="#">{{$cart->product->title}}</a>
                         </div>
                         <div class="price-field produtc-price"><p class="price">$256.00</p></div>
                         <div class="quantity">
@@ -39,7 +40,12 @@
                             </a>
                         </div>
                     </li>
-                    <li class="pr-cart-item">
+                        
+                    @empty
+                        
+                    @endforelse
+                  
+                    {{-- <li class="pr-cart-item">
                         <div class="product-image">
                             <figure><img src="frontend/images/products/digital_20.jpg" alt=""></figure>
                         </div>
@@ -61,7 +67,7 @@
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </div>
-                    </li>												
+                    </li>												 --}}
                 </ul>
             </div>
 
@@ -76,8 +82,8 @@
                     <label class="checkbox-field">
                         <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
                     </label>
-                    <a class="btn btn-checkout" href="checkout.html">Check out</a>
-                    <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <a class="btn btn-checkout" href="{{route('checkout')}}">Check out</a>
+                    <a class="link-to-shop" href="{{route('shop')}}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="update-clear">
                     <a class="btn btn-clear" href="#">Clear Shopping Cart</a>

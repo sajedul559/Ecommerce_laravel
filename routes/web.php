@@ -98,6 +98,11 @@ Route::get('/test',[App\Http\Controllers\backend\CategoriesController::class,'te
 
 //Product Add to  Cart
 Route::post('/add-to-cart',[App\Http\Controllers\backend\CartController::class,'addToCart'])->name('add-to-cart');
+Route::get('/shopping-cart',[App\Http\Controllers\backend\CartController::class,'shoppingCart'])->name('shopping-cart');
+
+//Checkout Routes
+Route::get('/checkout',[App\Http\Controllers\backend\CartController::class,'checkout'])->name('checkout');
+
 
 
 

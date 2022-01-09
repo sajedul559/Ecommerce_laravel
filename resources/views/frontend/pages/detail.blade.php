@@ -504,11 +504,15 @@ $(document).ready(function(){
                 success:function(response){
                 //    swal(response.status
                 //    );
-                   if(response){
-						
+                   if(response.status){
+						swal('success',response.status,'success').then(function(){
+							document.location.href=document.location.href;
+						});
 					}
 					else{
-                       
+                        swal('error',response.status,'error').then(function(){
+							document.location.href=document.location.href;
+						});
                     }
                 }
             })
