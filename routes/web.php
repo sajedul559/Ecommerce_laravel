@@ -30,7 +30,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
 
 });
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -47,6 +47,8 @@ Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin
 
 //View Shop Page
 Route::get('/', [App\Http\Controllers\frontend\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/shop',[App\Http\Controllers\frontend\HomeController::class,'shop'])->name('shop');
 Route::get('/cart',[App\Http\Controllers\frontend\HomeController::class,'cart'])->name('cart');
@@ -82,12 +84,20 @@ Route::delete('/delete-product/{id}',[App\Http\Controllers\backend\ProductContro
 Route::get('/edit-product/{id}',[App\Http\Controllers\backend\ProductController::class,'editproduct'])->name('editproduct');
 Route::post('/update-product/{id}',[App\Http\Controllers\backend\ProductController::class,'updateproduct'])->name('updateproduct');
 
+Route::get('/details-product/{id}',[App\Http\Controllers\backend\ProductController::class,'detailsproduct'])->name('detailsproduct');
+
+Route::post('/products/validate-amount',[App\Http\Controllers\backend\ProductController::class,'validateAmount']);
+
+
+
 //Ajax for sub category
 Route::post('/category/{id}/child',[App\Http\Controllers\backend\CategoriesController::class,'getChildByParent']);
 
 Route::get('/test',[App\Http\Controllers\backend\CategoriesController::class,'test'])->name('test');
 
 
+//Product Add to  Cart
+Route::post('/add-to-cart',[App\Http\Controllers\backend\CartController::class,'addToCart'])->name('add-to-cart');
 
 
 

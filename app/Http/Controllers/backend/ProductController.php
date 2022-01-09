@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
+
+use Session;
 use File;
 
 use Illuminate\Support\Str;
@@ -17,7 +21,10 @@ class ProductController extends Controller
 {
     public function allProduct()
     {
+        // return  $user = User::where('status',1)->get();
+
     
+    //  return   $user = User::where('status',1)->limit(1)->get();
         $products = Product::getAllProduct();
         // return $products;
     
@@ -31,6 +38,7 @@ class ProductController extends Controller
     }
     public function storeproduct(Request $request)
     {
+        // return $request->all();
       
         $this->validate($request,[
             'title'=>'string|required',
@@ -79,7 +87,28 @@ class ProductController extends Controller
             $product->photo = $name;
             $product->save();
         }
-        return back();
+        $product->save();
+
+        $users = User::where('status',1)->get();
+
+
+        foreach($users as $user){
+
+        $data=$user->toArray();
+
+        Mail::send('admin.mail',['val'=>$data], function($message) use ($data){
+            $message->to($data['email']);
+            $message->subject('mail');
+        });
+
+    }
+
+     
+
+
+        return redirect()->route('allProduct')->with('success','Product successfull added');
+
+
 
 
     }
@@ -148,13 +177,45 @@ class ProductController extends Controller
             $product->save();
         }
         $product->save();
-        return back();
+        return redirect()->route('allProduct')->with('success','Product successfull updated');
 
 
     }
     public function deleteproduct($id)
     {
         $product = Product::find($id)->delete();
-        return back();
+        Session()->flash('success','Product successfull deleted');
+        return redirect()->route('allProduct');
+    }
+
+    public function detailsproduct($id)
+    {
+        $product = Product::find($id);
+        
+        return view('frontend.pages.detail',compact('product'));
+
+    }
+
+    public function validateAmount(Request $request)
+    {
+       // $request->all();
+        // dd( $request->all());
+
+        $id = $request->has('pid')?$request->get('pid'):'';
+
+        $product_amount = Product::find($id)->stock;
+
+        if($request->has('qty') && $request->get('qty') > $product_amount){
+            return json_encode([
+                'success'=>true,
+                'message'=>'Product must me less than'. $product_amount
+            ]);
+        }
+        else{
+            return json_encode([
+                'success'=>false
+            ]);
+        }
+
     }
 }

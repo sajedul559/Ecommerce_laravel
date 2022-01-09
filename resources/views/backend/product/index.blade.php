@@ -3,7 +3,10 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="row">
-           
+           <div class="col-md-12">
+              @include('backend.notification.notification')
+
+           </div>
         </div>
        <div class="card-header py-3">
          <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
@@ -62,7 +65,7 @@
                        <td>{{$product->cat_info['title']}}
                          <sub>
                            @foreach($sub_cat_info as $data)
-                             {{$data->title}}
+                           <span class="badge badge-success">{{$data->title}}</span>  
                            @endforeach
                          </sub>
                        </td>
@@ -129,7 +132,6 @@
                @endforeach
              </tbody>
            </table>
-           <span style="float:right">{{$products->links()}}</span>
            @else
              <h6 class="text-center">No Products found!!! Please create Product</h6>
            @endif

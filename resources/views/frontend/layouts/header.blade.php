@@ -156,7 +156,7 @@
                                 <a href="{{url('/')}}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{route('about')}} class="link-term mercado-item-title">About Us</a>
+                                <a href="{{route('about')}}" class="link-term mercado-item-title">About Us</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{route('shop')}}" class="link-term mercado-item-title">Shop</a>
