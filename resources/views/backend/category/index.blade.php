@@ -23,7 +23,7 @@
             <tbody>
                 @foreach ($category  as $category )
                 @php
-                  $parent_cat = DB::table('categories')->select('title')->where('id',$category->parent_id)->get();
+                  $parent_cat = DB::table('categories')->select('title')->where('id',$category->parent_id)->first();
                 @endphp
                 <tr class="text-center">
                     <td>{{$category->id}}</td>
